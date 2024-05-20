@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3>Browse Topics</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-3">
+            <a href="{% url 'create-room' %}" class="btn btn-primary">Create Room</a>
+            <h1>Home Page</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <li><a href="{% url 'home' %}">All</a></li>
+            </div>
+            <ul>
+                {% for topic in topics %}
+                    <li><a href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                {% for room in rooms %}
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'update-room' room.id %}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{% url 'delete-room' room.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="text-muted">@{{ room.host.username }}</span>
+                                    <p>{{ room.id }} - <a href="{% url 'room' room.id %}">{{ room.name }}</a></p>
+                                    <hr>
+                                    <small>{{ room.topic.name }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
