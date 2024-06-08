@@ -1,12 +1,60 @@
-
 {% extends 'main.html' %}
-
-
 
 {% block content %}
 <h1>Room page</h1>
+<div class="container">
+    <div class="row">
+        <!-- Left column for room details and messages -->
+        <div class="col-md-8">
+            <h2>{{room.name}}</h2>
+            <p>{{room.description}}</p>
 
-<h2>{{room.name}}</h2>
+            <div class='comment-wrapper'>
+                <h3>Conversation</h3>
+                <hr>
+
+                {% for message in room_messages %}
+                    <div>
+                        
+                        {% if request.user == message.user %}
+                               
+                        <a class="btn btn-danger" href="{% url 'delete-message' message.id %}">Delete</a>
+                        <a  class="btn btn-info" href="{% url 'update-message' message.id %}">Edit</a>
+                        {% endif %}
+                        <small>@{{message.user}} {{message.created_time|timesince}} ago</small> <br>
+                        <p>{{message.body}}</p>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if request.user.is_authenticated %}
+                <div class='comment-form mt-3'>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" name="body" class="form-control" placeholder="Write your message here..." id="">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Right column for participants -->
+        <div class="col-md-4">
+            <h3>Participants</h3>
+            <hr>
+            <!-- Participants list goes here -->
+            <!-- Assuming you have a participants list, you can loop through it -->
+            <ul class="list-group">
+                {% for user in participants %}
+                    <li class="list-group-item">@{{ user.username }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock content %}
-    
-   

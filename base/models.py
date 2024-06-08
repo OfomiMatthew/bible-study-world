@@ -15,7 +15,7 @@ class Room(models.Model):
     topic = models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=300)
     description = models.TextField(null=True, blank=True) # "null attribute for database" and "blank attribute for form"
-    # participants
+    participants = models.ManyToManyField(User,related_name='participants',blank=True)
     updated_time = models.DateTimeField(auto_now=True) # takes snapshot eveyrtime we save an item
     created_time = models.DateTimeField(auto_now_add=True) # take a snapshot the moment it is created. Just once, not everytime
 
