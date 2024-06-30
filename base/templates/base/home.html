@@ -19,17 +19,7 @@
 
     <div class="row">
         <!-- Column for Topics -->
-        <div class="col-md-3">
-            <div class="mb-3">
-                <h4>Topics</h4>
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="{% url 'home' %}">All</a></li>
-                    {% for topic in topics %}
-                        <li class="list-group-item"><a href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+       {% include 'base/topic_component.html' %}
 
         <!-- Column for Rooms -->
         <div class="col-md-6">
@@ -37,53 +27,13 @@
                 <div class="col-12">
                     <h4>Rooms</h4>
                 </div>
-                {% for room in rooms %}
-                    <div class="col-12 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    {% if request.user == room.host %}
-                                        <a href="{% url 'update-room' room.id %}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="{% url 'delete-room' room.id %}" class="btn btn-sm btn-danger">Delete</a>
-                                    {% endif %}
-                                </div>
-                                <div class="mt-2">
-                                    <span class="text-muted">@{{ room.host.username }}</span>
-                                    <p>{{ room.id }} - <a href="{% url 'room' room.id %}">{{ room.name }}</a></p>
-                                    <hr>
-                                    <small>{{ room.topic.name }}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+               {% include 'base/feed_component.html' %} 
             </div>
         </div>
 
         <!-- Column for Recent Activity -->
         <div class="col-md-3">
-            <div class="mb-3">
-                <h4>Recent Activity</h4>
-                <!-- Assuming you have a variable 'recent_activity' that contains recent activity data -->
-              
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <hr>
-                            
-                            {% for message in room_messages  %}
-                                <div>
-                                    <br>
-                                    <small>@{{message.user}}  {{message.created_time|timesince}}</small> <br>
-                                    <small>replied to "{{message.room}}</small>
-                                    <p>{{message}}...</p>
-                                 
-                                </div>
-                            {% endfor %}
-                                
-                        </div>
-                    </div>
-               
-            </div>
+          {% include 'base/activity_component.html' %}
         </div>
     </div>
 </div>

@@ -33,6 +33,10 @@ class Message(models.Model):
     updated_time = models.DateTimeField(auto_now=True) # takes snapshot eveyrtime we save an item
     created_time = models.DateTimeField(auto_now_add=True) #
 
+
+    class Meta:
+        ordering = ['-updated_time','-created_time']
+
     def __str__(self):
         return self.body[0:20]
 
