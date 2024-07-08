@@ -6,6 +6,11 @@
     <div class="row">
         <!-- Left column for room details and messages -->
         <div class="col-md-8 pt-sm-5">
+            <div>
+                <h2>HOST</h2>
+                <p>Hosted by <a href="{% url 'user-profile' user.id  %}">@{{room.host.username}}</a></p>
+                <hr>
+            </div>
             <h2>{{room.name}}</h2>
             <p>{{room.description}}</p>
 
@@ -42,6 +47,8 @@
                 </div>
             {% endif %}
         </div>
+
+      
         
         <!-- Right column for participants -->
         <div class="col-md-4">

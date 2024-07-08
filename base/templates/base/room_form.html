@@ -1,13 +1,20 @@
 {% extends 'main.html' %}
 
-
 {% block content %}
-    <div>
-        <form action="" method="post">
-{% csrf_token %}
-{{form.as_p}}
-<input type="submit" value="Submit">
-        </form>
+<div class="container pt-sm-5 mt-sm-5 d-flex justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center">CREATE / UPDATE ROOM</h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock content %}
-    
