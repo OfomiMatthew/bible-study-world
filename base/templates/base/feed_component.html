@@ -1,20 +1,37 @@
 {% for room in rooms %}
-                    <div class="col-12 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    {% if request.user == room.host %}
-                                        <a href="{% url 'update-room' room.id %}" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="{% url 'delete-room' room.id %}" class="btn btn-sm btn-danger">Delete</a>
-                                    {% endif %}
-                                </div>
-                                <div class="mt-2">
-                                    <a href="{% url 'user-profile' room.host.id %}" class="text-muted">@{{ room.host.username }}</a>
-                                    <p>{{ room.id }} - <a href="{% url 'room' room.id %}">{{ room.name }}</a></p>
-                                    <hr>
-                                    <small>{{ room.topic.name }}</small>
-                                </div>
-                            </div>
-                        </div>
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    {% if request.user == room.host %}
+                        <a href="{% url 'update-room' room.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete-room' room.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+                <div class="mt-2">
+                    <a href="{% url 'user-profile' room.host.id %}">
+                        <img src="" alt="">
+                    </a>
+                    <a href="{% url 'user-profile' room.host.id %}" class="text-info">@{{ room.host.username }}</a>
+                    <p>{{ room.id }} - <a href="{% url 'room' room.id %}">{{ room.name }}</a></p>
+                    <p>
+                        
+                        {% if room.participants.all.count == 0 or room.participants.all.count == 1  %}
+                        <span>{{room.participants.all.count}} Participant Joined</span>
+                        {% else %}
+                        <span>{{room.participants.all.count}} Participants Joined</span>
+                        {% endif %}
+                            
+                      
+                    
+                    </p>
+                    <div>
+                        <span>{{ room.created_time|timesince }}</span>
                     </div>
-                {% endfor %}
+                    <hr>
+                    <small>{{ room.topic.name }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

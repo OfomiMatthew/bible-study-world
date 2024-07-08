@@ -1,32 +1,25 @@
 {% load static %}
 
 <!-- navbar.html -->
-<div class="container-fluid">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-     
-      <img src="{% static 'images/ideaHub.jpeg' %}" style="width:50px" class="img-fluid rounded" alt="">
+<div class="">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mx-3" href="/">
+      <img src="{% static 'images/ideaHub.jpeg' %}" style="width:50px" class="img-fluid rounded " alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <!-- Add more nav items here if needed -->
-      </ul>
-      <form class="d-flex" role="search" action="{% url 'home' %}" method="GET">
-     
-        <input class="form-control mr-sm-2" type="search" name='q' placeholder="Search Rooms" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <form class="d-flex mr-3" role="search" action="{% url 'home' %}" method="GET">
+        <input class="form-control mr-2" type="search" name='q' placeholder="Search Rooms" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-     
-      <ul class="navbar-nav ml-auto">
-      
+
+      <ul class="navbar-nav">
         {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="#">Hello {{ request.user }}</a>
-            
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -41,4 +34,3 @@
   </nav>
   <hr>
 </div>
-  

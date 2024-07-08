@@ -1,11 +1,11 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1>Room page</h1>
+<h1 class="pt-sm-5 mt-sm-5">Room page</h1>
 <div class="container">
     <div class="row">
         <!-- Left column for room details and messages -->
-        <div class="col-md-8">
+        <div class="col-md-8 pt-sm-5">
             <h2>{{room.name}}</h2>
             <p>{{room.description}}</p>
 
@@ -46,12 +46,20 @@
         <!-- Right column for participants -->
         <div class="col-md-4">
             <h3>Participants</h3>
+            
+            {% if participants.all.count == 0 or participants.all.count == 1  %}
+            <p><span><small>{{participants.all.count}} Participant Joined</small></span></p> 
+            {% else %}
+            <p><span><small>{{participants.all.count}} Participants Joined</small></span></p>
+            {% endif %}
+                
+          
             <hr>
             <!-- Participants list goes here -->
             <!-- Assuming you have a participants list, you can loop through it -->
             <ul class="list-group">
                 {% for user in participants %}
-                    <li class="list-group-item">@{{ user.username }}</li>
+                    <li class="list-group-item"><a href="{% url 'user-profile' user.id %}">@{{ user.username }}</a></li>
                 {% endfor %}
             </ul>
         </div>
