@@ -42,6 +42,8 @@ INSTALLED_APPS = [
      'base',
     'crispy_forms',
     'crispy_bootstrap5',
+    'rest_framework',
+     "corsheaders",
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -49,12 +51,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
+     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     
+ 
 ]
 
 ROOT_URLCONF = 'biblestudy.urls'
@@ -134,4 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # configuring static files like images, css and js
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
