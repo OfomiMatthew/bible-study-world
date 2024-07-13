@@ -1,51 +1,43 @@
 {% extends 'main.html' %}
 
+{% load crispy_forms_tags %}
 
 {% block title %}
     Login / Register
 {% endblock title %}
 
-
 {% block content %}
-
-
 {% if page == 'login' %}
-    
-
-    
     <div class="mt-sm-5 pt-sm-5">
-
         <form action="" method="POST">
             {% csrf_token %}
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter username">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password">
-            <input type="submit" value="Login">
-            
-
+            {% comment %} <div class="form-group">
+                <label for="email">Email:</label>
+                <input required type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+            </div> {% endcomment %}
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
-        <p>Haven't sign up yet ?</p>
+        <p>Haven't signed up yet?</p>
         <a href="{% url 'register' %}">Register</a>
     </div>
-
-    {% else %}
-    <div>
-
+{% else %}
+    <div class="mt-sm-5 pt-sm-5">
         <form action="" method="POST">
             {% csrf_token %}
-            {{form.as_p}}
-           
-            <input type="submit" value="Register">
-            
-
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Register</button>
         </form>
         <p>Already signed up?</p>
         <a href="{% url 'login' %}">Login</a>
     </div>
-    {% endif %}
-
+{% endif %}
 {% endblock content %}
-    
-    

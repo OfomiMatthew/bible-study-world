@@ -7,7 +7,21 @@
 {% block content %}
 <div class="container pt-sm-5">
     <h1>{{ user.username }}</h1>
-    <p><span>@{{user.username}}</span></p>
+    <p><span>
+        
+        {% if request.user == user %}
+            
+        
+            
+        <a href="{% url 'update-user' %}">@{{user.username}}</a>
+        {% endif %}
+    </span></p>
+
+    
+    {% if request.user == user %}
+        <a href="{% url 'update-user' %}">Edit Profile</a>
+    {% endif %}
+        
 
     <div class="row">
         <!-- Column 1 -->

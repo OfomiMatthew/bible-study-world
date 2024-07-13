@@ -6,6 +6,8 @@
             {% for topic in topics %}
                 <li class="list-group-item"><a href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a><span>{{topic.room_set.all.count}}</span></li>
             {% endfor %}
+            
         </ul>
+        <p><a href="{% url 'topics' %}">More</a></p>
     </div>
 </div>
