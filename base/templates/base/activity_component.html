@@ -9,7 +9,7 @@
                 {% for message in room_messages  %}
                     <div>
                         <br>
-                        <small><a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>  {{message.created_time|timesince}}</small> <br>
+                        <small>{{message.created_time|timesince}} <br><a href="{% url 'user-profile' message.user.id %}">@{{message.user.username}}</a>  </small> <br>
                         <small>replied to "{{message.room}}</small>
                         
                         

@@ -11,15 +11,15 @@
     <div class="mt-sm-5 pt-sm-5">
         <form action="" method="POST">
             {% csrf_token %}
-            <div class="form-group">
+            {% comment %} <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-            </div>
+            </div> {% endcomment %}
 
-            {% comment %} <div class="form-group">
+            <div class="form-group">
                 <label for="email">Email:</label>
                 <input required type="text" class="form-control" id="email" name="email" placeholder="Enter email">
-            </div> {% endcomment %}
+            </div>
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">

@@ -8,7 +8,7 @@
         <div class="col-md-8 pt-sm-5">
             <div>
                 <h2>HOST</h2>
-                <p>Hosted by <a href="{% url 'user-profile' user.id  %}">@{{room.host.username}}</a></p>
+                <p>Hosted by<img src="{{ room.host.avatar.url }}" alt="Profile Photo" class="rounded-circle img-thumbnail" style="width: 50px; height: 50px;"> <a href="{% url 'user-profile' user.id  %}">@{{room.host.username}} </a></p>
                 <hr>
             </div>
             <h2>{{room.name}}</h2>
@@ -26,7 +26,9 @@
                         <a class="btn btn-danger" href="{% url 'delete-message' message.id %}">Delete</a>
                         <a  class="btn btn-info" href="{% url 'update-message' message.id %}">Edit</a>
                         {% endif %}
-                        <small><a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a> {{message.created_time|timesince}} ago</small> <br>
+                        <div>
+                        <small><img src="{{ message.user.avatar.url }}" alt="Profile Photo" class="rounded-circle img-thumbnail" style="width: 50px; height: 50px;"><a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a> {{message.created_time|timesince}} ago</small> <br>
+                    </div>
                         <p>{{message.body}}</p>
                         <hr>
                     </div>
